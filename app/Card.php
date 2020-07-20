@@ -9,7 +9,7 @@ class Card extends Model
 {
     public function list(): BelongsTo
     {
-        $this->belongsTo(CardList::class, 'list_id');
+        return $this->belongsTo(CardList::class, 'list_id');
     }
 
     public function owner(): BelongsTo

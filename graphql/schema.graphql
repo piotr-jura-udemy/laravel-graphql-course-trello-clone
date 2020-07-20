@@ -1,0 +1,54 @@
+"A date string with format `Y-m-d`, e.g. `2011-05-23`."
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime
+    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+"A datetime and timezone string in ISO 8601 format `Y-m-dTH:i:sO`, e.g. `2020-04-20T13:53:12+02:00`."
+scalar DateTimeTz
+    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTimeTz")
+
+type Query {
+    users: [User!]! @paginate(defaultCount: 10)
+    user(id: ID @eq): User @find
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+    boards: [Board!]! @hasMany
+    cards: [Card!]! @hasMany
+}
+
+type Board {
+    id: ID!
+    created_at: DateTime!
+    updated_at: DateTime!
+    title: String!
+    color: String!
+    lists: [CardList!]! @hasMany
+    owner: User! @belongsTo
+}
+
+type CardList {
+    id: ID!
+    created_at: DateTime!
+    updated_at: DateTime!
+    title: String!
+    cards: [Card!]! @hasMany
+    board: Board! @belongsTo
+}
+
+type Card {
+    id: ID!
+    created_at: DateTime!
+    updated_at: DateTime!
+    title: String!
+    order: Int!
+    list: CardList! @belongsTo
+    owner: User! @belongsTo
+}
