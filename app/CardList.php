@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CardList extends Model
 {
+    protected $fillable = ['title', 'board_id'];
+
     public function cards(): HasMany
     {
         return $this->hasMany(Card::class, 'list_id');
