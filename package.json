@@ -24,6 +24,9 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "tailwindcss": "^1.4.6"
+        "apollo-boost": "^0.4.9",
+        "graphql": "^15.2.0",
+        "tailwindcss": "^1.4.6",
+        "vue-apollo": "^3.0.3"
     }
 }
