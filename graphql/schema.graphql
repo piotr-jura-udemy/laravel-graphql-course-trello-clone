@@ -15,6 +15,11 @@ type Query {
     board(id: ID! @eq): Board @find
 }
 
+type Mutation {
+    cardAdd(title: String!, order: Int!, list_id: ID!, owner_id: ID!): Card!
+        @create
+}
+
 type User {
     id: ID!
     name: String!
