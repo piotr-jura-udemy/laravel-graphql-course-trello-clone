@@ -6,6 +6,7 @@
 
     <Card v-for="card in list.cards" :key="card.id" :card="card"></Card>
 
+    <CardEditor></CardEditor>
     <CardAddButton></CardAddButton>
   </div>
 </template>
@@ -13,9 +14,10 @@
 <script>
 import Card from "./Card";
 import CardAddButton from "./CardAddButton";
+import CardEditor from "./CardEditor";
 
 export default {
-  components: { Card, CardAddButton },
+  components: { Card, CardAddButton, CardEditor },
   props: {
     list: Object
   }
