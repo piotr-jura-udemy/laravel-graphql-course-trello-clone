@@ -6,7 +6,7 @@
 
     <Card v-for="card in list.cards" :key="card.id" :card="card"></Card>
 
-    <CardEditor v-if="editing" @closed="editing=false"></CardEditor>
+    <CardEditor v-if="editing" @closed="editing=false" :list="list"></CardEditor>
     <CardAddButton v-else @click="editing=true"></CardAddButton>
   </div>
 </template>

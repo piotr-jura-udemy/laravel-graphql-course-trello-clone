@@ -46,6 +46,7 @@ type CardList {
     title: String!
     cards: [Card!]! @hasMany
     board: Board! @belongsTo
+    board_id: ID!
 }
 
 type Card {
