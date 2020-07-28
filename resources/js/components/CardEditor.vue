@@ -50,19 +50,10 @@ export default {
           order: this.list.cards.length + 1
         },
         update(store, { data: { cardAdd } }) {
-          const data = store.readQuery({
-            query: BoardQuery,
-            variables: { id: Number(self.list.board_id) }
-          });
-
-          data.board.lists
-            .find(list => list.id == self.list.id)
-            .cards.push(cardAdd);
-
-          store.writeQuery({ query: BoardQuery, data });
+          self.$emit("added", { store, data: cardAdd });
+          self.closed();
         }
       });
-      this.closed();
     },
     closed() {
       this.$emit("closed");
