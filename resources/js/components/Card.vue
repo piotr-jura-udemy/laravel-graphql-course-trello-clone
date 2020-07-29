@@ -14,6 +14,7 @@
 
 <script>
 import CardDelete from "./../graphql/CardDelete.gql";
+import { EVENT_CARD_DELETED } from "./../constants";
 
 export default {
   props: {
@@ -21,10 +22,19 @@ export default {
   },
   methods: {
     cardDelete() {
+      const self = this;
+
       this.$apollo.mutate({
         mutation: CardDelete,
         variables: {
           id: this.card.id
+        },
+        update(store, { data: { cardDelete } }) {
+          self.$emit("deleted", {
+            store,
+            data: cardDelete,
+            type: EVENT_CARD_DELETED
+          });
         }
       });
     }
