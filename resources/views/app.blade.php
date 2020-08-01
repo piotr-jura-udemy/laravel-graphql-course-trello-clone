@@ -11,7 +11,7 @@
 
 <body class="h-screen text-gray-800">
     <div id="app" class="h-full">
-        <Board></Board>
+        <router-view></router-view>
     </div>
 </body>
 

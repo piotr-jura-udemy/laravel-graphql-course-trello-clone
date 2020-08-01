@@ -28,6 +28,7 @@
         "graphql": "^15.2.0",
         "graphql-tag": "^2.10.3",
         "tailwindcss": "^1.4.6",
-        "vue-apollo": "^3.0.3"
+        "vue-apollo": "^3.0.3",
+        "vue-router": "^3.3.4"
     }
 }
