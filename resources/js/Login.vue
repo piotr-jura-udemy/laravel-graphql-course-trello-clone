@@ -8,12 +8,13 @@
       <div class="w-full sm:shadow-xl sm:bg-white sm:py-8 sm:px-12">
         <div class="w-full text-center text-gray-600 font-bold mb-8">Log in to Laravello</div>
 
-        <form>
+        <form @submit.prevent="authenticate">
           <div class="w-full mb-4">
             <input
               type="text"
               class="rounded-sm px-4 py-2 outline-none focus:outline-none border-gray-400 bg-gray-100 border-solid border-2 w-full text-sm"
               placeholder="Enter email"
+              v-model="email"
             />
           </div>
 
@@ -22,6 +23,7 @@
               type="password"
               class="rounded-sm px-4 py-2 outline-none focus:outline-none border-gray-400 bg-gray-100 border-solid border-2 w-full text-sm"
               placeholder="Enter password"
+              v-model="password"
             />
           </div>
 
@@ -45,6 +47,30 @@
     </div>
   </div>
 </template>
+
+<script>
+import Login from "./graphql/Login.gql";
+
+export default {
+  data() {
+    return {
+      email: null,
+      password: null
+    };
+  },
+  methods: {
+    authenticate() {
+      this.$apollo.mutate({
+        mutation: Login,
+        variables: {
+          email: this.email,
+          password: this.password
+        }
+      });
+    }
+  }
+};
+</script>
 
 <style scoped>
 .container {
