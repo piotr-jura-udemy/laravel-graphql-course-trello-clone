@@ -4,8 +4,14 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 const store = {
-  state: {},
-  mutations: {},
+  state: {
+    isLoggedIn: false
+  },
+  mutations: {
+    setLoggedIn(state, payload) {
+      state.isLoggedIn = Boolean(payload);
+    }
+  },
   actions: {}
 };
 
