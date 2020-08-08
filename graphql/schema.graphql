@@ -12,7 +12,7 @@ scalar DateTimeTz
 type Query {
     users: [User!]! @paginate(defaultCount: 10)
     user(id: ID @eq): User @find
-    board(id: ID! @eq): Board @find
+    board(id: ID! @eq): Board @find @guard
 }
 
 type Mutation {
@@ -26,7 +26,7 @@ type Mutation {
         email: String! @rules(apply: ["required", "email", "unique:users"])
         password: String! @rules(apply: ["required", "min:8"]) @hash
         name: String! @rules(apply: ["required", "min:2"])
-    ): User @create
+    ): User @create @event(dispatch: "Illuminate\\Auth\\Events\\Registered")
 }
 
 type User {
