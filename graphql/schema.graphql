@@ -22,8 +22,11 @@ type Mutation {
 
     login(email: String!, password: String!): User!
     logout: User @guard
-    register(email: String!, password: String! @hash, name: String!): User
-        @create
+    register(
+        email: String! @rules(apply: ["required", "email", "unique:users"])
+        password: String! @rules(apply: ["required", "min:8"]) @hash
+        name: String! @rules(apply: ["required", "min:2"])
+    ): User @create
 }
 
 type User {
