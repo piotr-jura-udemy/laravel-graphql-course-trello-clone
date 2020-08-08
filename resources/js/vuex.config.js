@@ -12,7 +12,13 @@ const store = {
       state.isLoggedIn = Boolean(payload);
     }
   },
-  actions: {}
+  actions: {
+    async setLoggedIn({ commit }, payload) {
+      const isLoggedIn = Boolean(payload);
+      localStorage.setItem("isLoggedIn", isLoggedIn);
+      commit("setLoggedIn", isLoggedIn);
+    }
+  }
 };
 
 export default new Vuex.Store(store);
