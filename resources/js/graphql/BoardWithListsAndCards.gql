@@ -11,6 +11,9 @@ query BoardWithListsAndCards($id: ID!) {
                 id
                 title
                 order
+                owner {
+                    id
+                }
             }
         }
     }
