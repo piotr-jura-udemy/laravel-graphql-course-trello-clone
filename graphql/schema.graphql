@@ -18,8 +18,10 @@ type Query {
 
 type Mutation {
     cardAdd(input: CardAddInput @spread): Card! @create
-    cardDelete(id: ID!): Card @delete
-    cardUpdate(id: ID!, title: String): Card @update
+    cardDelete(id: ID!): Card @delete @can(ability: "delete", find: "id")
+    cardUpdate(id: ID!, title: String): Card
+        @update
+        @can(ability: "update", find: "id")
 
     login(email: String!, password: String!): User!
     logout: User @guard
