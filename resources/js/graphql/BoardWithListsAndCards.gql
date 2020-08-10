@@ -7,6 +7,11 @@ query BoardWithListsAndCards($id: ID!) {
             id
             title
             board_id
+            board {
+                owner {
+                    id
+                }
+            }
             cards {
                 id
                 title
