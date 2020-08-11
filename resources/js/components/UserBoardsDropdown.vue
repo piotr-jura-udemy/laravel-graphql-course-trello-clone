@@ -22,31 +22,26 @@
         class="rounded-sm hover:bg-gray-200 p-2 underline cursor-pointer mt-2"
       >Create new board...</div>
 
-      <Modal
-        :width="300"
-        :height="250"
-        :show="showModal"
-        @closed="showModal = false"
-      >Hello that's a message inside the modal!</Modal>
+      <BoardAddModal :show="showModal" @closed="showModal = false"></BoardAddModal>
     </DropdownMenu>
   </div>
 </template>
 
 <script>
 import DropdownMenu from "./DropdownMenu";
-import Modal from "./Modal";
+import BoardAddModal from "./BoardAddModal";
 import UserBoards from "./../graphql/UserBoards.gql";
 import { mapState } from "vuex";
 import { colorMap100, colorMap200 } from "./../utils";
 
 export default {
-  components: { DropdownMenu, Modal },
+  components: { DropdownMenu, BoardAddModal },
   apollo: {
     userBoards: {
       query: UserBoards,
       variables() {
         return {
-          userId: 1
+          userId: this.userId
         };
       },
       skip() {

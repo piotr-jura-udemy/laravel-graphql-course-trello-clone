@@ -2,11 +2,14 @@
   <transition name="appear">
     <div
       class="overlay fixed z-30 top-0 bottom-0 left-0 w-full h-full bg-black"
-      @click="$emit('closed')"
+      @click.self="$emit('closed')"
       v-if="show"
     >
-      <div class="w-full h-full bg-transparent flex justify-center items-center">
-        <div class="text-white shadow-xl" :style="style" @click.self="$emit('closed')">
+      <div
+        class="w-full h-full bg-transparent flex justify-center items-center"
+        @click.self="$emit('closed')"
+      >
+        <div :style="style" @click.self="$emit('closed')">
           <slot></slot>
         </div>
       </div>
