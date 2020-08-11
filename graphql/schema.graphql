@@ -12,6 +12,7 @@ scalar DateTimeTz
 type Query {
     users: [User!]! @paginate(defaultCount: 10)
     user(id: ID @eq): User @find
+    userBoards(owner_id: ID! @where): [Board!] @all
     board(id: ID! @eq): Board @find
     me: User @auth
 }

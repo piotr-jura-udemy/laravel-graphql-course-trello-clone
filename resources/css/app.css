@@ -18,7 +18,7 @@
 
 .appear-enter-active,
 .appear-leave-active {
-    transition: all 1000ms ease-in;
+    transition: all 50ms ease-in;
 }
 
 .appear-enter,
