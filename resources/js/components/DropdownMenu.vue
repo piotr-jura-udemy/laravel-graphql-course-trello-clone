@@ -3,7 +3,7 @@
     <div
       v-on-clickaway="close"
       v-if="show"
-      class="dropdown-menu absolute bg-gray-200 rounded-sm mt-2 text-sm text-gray-600 border-gray-200 shadow w-64 overflow-y-auto z-10 p-2"
+      class="dropdown-menu absolute bg-gray-100 rounded-sm mt-2 text-sm text-gray-600 border-gray-200 shadow w-64 overflow-y-auto z-10 p-2"
     >
       <slot></slot>
     </div>
