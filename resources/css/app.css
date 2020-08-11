@@ -15,3 +15,14 @@
 }
 
 @tailwind utilities;
+
+.appear-enter-active,
+.appear-leave-active {
+    transition: all 1000ms ease-in;
+}
+
+.appear-enter,
+.appear-leave-to {
+    opacity: 0;
+    transform: translateY(20px);
+}
