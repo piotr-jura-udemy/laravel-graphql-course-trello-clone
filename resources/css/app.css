@@ -26,3 +26,8 @@
     opacity: 0;
     transform: translateY(20px);
 }
+
+.list {
+    min-width: 230px;
+    width: 230px;
+}
