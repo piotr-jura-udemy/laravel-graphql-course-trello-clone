@@ -67,3 +67,9 @@ export const colorMap200 = {
   blue: "bg-blue-200",
   indigo: "bg-indigo-200"
 };
+
+export const colorGrid = [
+  ["teal", "orange", "gray"],
+  ["yellow", "purple", "red"],
+  ["green", "blue", "indigo"]
+];
