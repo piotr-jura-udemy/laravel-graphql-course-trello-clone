@@ -28,6 +28,8 @@ type Mutation {
         @update
         @can(ability: "update", find: "id")
 
+    boardAdd(title: String!, color: String!): Board! @create
+
     login(email: String!, password: String!): User!
     logout: User @guard
     register(

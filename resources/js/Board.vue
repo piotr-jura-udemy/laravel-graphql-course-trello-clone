@@ -107,7 +107,11 @@ export default {
           break;
       }
 
-      event.store.writeQuery({ query: BoardQuery, data });
+      event.store.writeQuery({
+        query: BoardQuery,
+        data,
+        variables: { id: Number(this.board.id) }
+      });
     }
   }
 };

@@ -3,6 +3,7 @@
     <div class="flex">
       <div class="rounded-sm p-4 text-black w-full mr-2" :class="[colors[color]]">
         <input
+          v-model="title"
           type="text"
           placeholder="Add board title"
           class="title rounded-sm text-white outline-none py-1 px-2 font-bold w-full hover:opacity-50 placeholder-gray-100"
@@ -24,8 +25,10 @@
 
     <div class="mt-4">
       <button
+        @click="addBoard"
+        :disabled="cannotCreate"
         :class="[colors[color]]"
-        class="rounded-sm py-2 px-4 text-white hover:opacity-75 cursor-pointer"
+        class="rounded-sm py-2 px-4 text-white hover:opacity-75 cursor-pointer disabled:opacity-25"
       >Create</button>
     </div>
   </Modal>
@@ -35,6 +38,11 @@
 import Modal from "./Modal";
 import BoardColor from "./BoardColor";
 import { colorGrid, colorMap500 } from "./../utils";
+
+import BoardAdd from "./../graphql/BoardAdd.gql";
+import UserBoards from "./../graphql/UserBoards.gql";
+
+import { mapState } from "vuex";
 
 export default {
   props: {
@@ -47,10 +55,42 @@ export default {
     };
   },
   computed: {
+    ...mapState({
+      userId: state => state.user.id
+    }),
     colors: () => colorMap500,
-    colorGrid: () => colorGrid
+    colorGrid: () => colorGrid,
+    cannotCreate() {
+      return this.title == null || this.title.length == 0;
+    }
   },
-  components: { Modal, BoardColor }
+  components: { Modal, BoardColor },
+  methods: {
+    addBoard() {
+      const self = this;
+      this.$apollo.mutate({
+        mutation: BoardAdd,
+        variables: {
+          title: this.title,
+          color: this.color
+        },
+        update(store, { data: { boardAdd } }) {
+          const data = store.readQuery({
+            query: UserBoards,
+            variables: { userId: self.userId }
+          });
+          data.userBoards.push(boardAdd);
+          store.writeQuery({
+            query: UserBoards,
+            data,
+            variables: { userId: self.userId }
+          });
+
+          self.$emit("closed");
+        }
+      });
+    }
+  }
 };
 </script>
 
