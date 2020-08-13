@@ -13,11 +13,13 @@
         class="rounded-sm border-blue-600 border-2 py-1 px-2 outline-none w-full text-gray-800 text-sm"
         placeholder="Enter list title..."
         @keyup.esc="hideEditor"
+        @keypress.enter="addList"
         v-model="title"
       />
 
       <div class="flex">
         <button
+          @click="addList"
           class="mt-2 rounded-sm py-1 px-3 bg-blue-700 text-white cursor-pointer hover:bg-blue-500 outline-none"
         >Add List</button>
 
@@ -34,8 +36,12 @@
 
 <script>
 import { directive as onClickaway } from "vue-clickaway";
+import { EVENT_LIST_ADDED } from "../constants";
+
+import ListAdd from "./../graphql/ListAdd.gql";
 
 export default {
+  props: ["board"],
   data() {
     return {
       editing: false,
@@ -51,6 +57,21 @@ export default {
       this.editing = true;
       // Activate the input (focus)
       this.$nextTick(() => this.$refs.title.focus());
+    },
+    addList() {
+      const self = this;
+
+      this.$apollo.mutate({
+        mutation: ListAdd,
+        variables: {
+          title: this.title,
+          board: this.board
+        },
+        update(store, { data: { listAdd } }) {
+          self.$emit("added", { store, data: listAdd, type: EVENT_LIST_ADDED });
+          self.hideEditor();
+        }
+      });
     }
   }
 };

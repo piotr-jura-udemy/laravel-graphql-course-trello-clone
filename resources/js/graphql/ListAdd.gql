@@ -1,0 +1,20 @@
+mutation ListAdd($title: String!, $board: ID!) {
+    listAdd(title: $title, board_id: $board) {
+        id
+        title
+        board_id
+        board {
+            owner {
+                id
+            }
+        }
+        cards {
+            id
+            title
+            order
+            owner {
+                id
+            }
+        }
+    }
+}
