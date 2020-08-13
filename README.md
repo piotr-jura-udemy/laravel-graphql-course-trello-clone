@@ -6,5 +6,4 @@ Full source code of the Master Laravel with GraphQL, Vue.js and Tailwind course 
 
 This repository contains the full source code of the Laravello (Trello Clone) application from the course.
 
-![Check out how the course looks like](https://github.com/piotr-jura-udemy/laravel-graphql-course-trello-clone
-/blob/master/github-laravello-promo-gif.gif?raw=true)
+![Check out how the course looks like](github-laravello-promo-gif.gif)
