@@ -4,6 +4,4 @@ Full source code of the Master Laravel with GraphQL, Vue.js and Tailwind course 
 
 ## "Master Laravel with GraphQL, Vue.js and Tailwind" on Udemy
 
-This repository contains the full source code of the course.
-
-For each lecture there is a separate branch with changes made during that lecture to clone or download.
+This repository contains the full source code of the Laravello (Trello Clone) application from the course.
